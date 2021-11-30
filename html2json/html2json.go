@@ -296,6 +296,9 @@ func (r *RichText) parse(sel *goquery.Selection, domain string) (data []h2j) {
 					if href, ok := attr["href"]; ok {
 						attr["href"] = r.fixSourceLink(domain, href)
 					}
+				// 兼容magic转换成span标签
+				case "magic":
+					h.Name = "span"
 				}
 
 				// 小程序不支持的HTML标签，全部转为div标签
